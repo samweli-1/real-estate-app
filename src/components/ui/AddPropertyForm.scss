@@ -1,0 +1,40 @@
+@use '../../styles/variables' as *;
+
+.img-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border: 2px dashed var(--border);
+    border-radius: $radius-md;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: $transition;
+    width: fit-content;
+
+    &:hover {
+      border-color: $accent;
+      color: $accent;
+    }
+  }
+
+  &__preview {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+
+    img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: $radius-sm;
+      border: 1px solid var(--border);
+    }
+  }
+}

@@ -1,0 +1,173 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.app.light {
+  --bg-primary: #{$bg-primary-light};
+  --bg-secondary: #{$bg-secondary-light};
+  --text-primary: #{$text-primary-light};
+  --text-secondary: #{$text-secondary-light};
+  --sidebar-bg: #{$sidebar-bg-light};
+  --border: #{$border-light};
+}
+
+.app.dark {
+  --bg-primary: #{$bg-primary-dark};
+  --bg-secondary: #{$bg-secondary-dark};
+  --text-primary: #{$text-primary-dark};
+  --text-secondary: #{$text-secondary-dark};
+  --sidebar-bg: #{$sidebar-bg-dark};
+  --border: #{$border-dark};
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: $transition;
+}
+
+.app {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: $transition;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+
+  .main-content {
+    flex: 1;
+    margin-left: $sidebar-width;
+    padding-top: $header-height;
+    background: var(--bg-primary);
+    min-height: 100vh;
+    transition: $transition;
+
+    .page-content {
+      padding: 2rem;
+
+      @include responsive(mobile) {
+        padding: 1rem;
+      }
+    }
+
+    @include responsive(mobile) {
+      margin-left: 0;
+    }
+  }
+}
+// MUI DataGrid dark mode overrides
+.app.dark {
+  .MuiDataGrid-root {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border) !important;
+  }
+
+  .MuiDataGrid-columnHeaders {
+    background: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border) !important;
+  }
+
+  .MuiDataGrid-columnHeaderTitle {
+    color: var(--text-primary) !important;
+  }
+
+  .MuiDataGrid-cell {
+    color: var(--text-primary) !important;
+    border-color: var(--border) !important;
+  }
+
+  .MuiDataGrid-row {
+    background: var(--bg-secondary) !important;
+
+    &:hover {
+      background: rgba(79, 70, 229, 0.08) !important;
+    }
+  }
+
+  .MuiDataGrid-footerContainer {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border) !important;
+  }
+
+  .MuiDataGrid-selectedRowCount,
+  .MuiTablePagination-root,
+  .MuiTablePagination-selectLabel,
+  .MuiTablePagination-displayedRows,
+  .MuiSelect-select {
+    color: var(--text-primary) !important;
+  }
+
+  .MuiTablePagination-actions .MuiIconButton-root {
+    color: var(--text-primary) !important;
+  }
+
+  // Fix filter/search inputs in dark mode
+  .MuiInputLabel-root {
+    color: var(--text-secondary) !important;
+  }
+
+  .MuiOutlinedInput-root {
+    color: var(--text-primary) !important;
+
+    fieldset {
+      border-color: var(--border) !important;
+    }
+
+    &:hover fieldset {
+      border-color: $accent !important;
+    }
+  }
+
+  .MuiSelect-icon {
+    color: var(--text-primary) !important;
+  }
+
+  .MuiMenuItem-root {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+
+    &:hover {
+      background: rgba(79, 70, 229, 0.1) !important;
+    }
+  }
+
+  // Dialog dark mode
+  .MuiDialog-paper {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+  }
+
+  .MuiDialogTitle-root,
+  .MuiDialogContent-root,
+  .MuiDialogActions-root {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+  }
+
+  .MuiDivider-root {
+    border-color: var(--border) !important;
+  }
+}
+.app.dark {
+  .MuiDataGrid-columnHeaders,
+  .MuiDataGrid-columnHeader,
+  .MuiDataGrid-columnHeadersInner,
+  div[class*="MuiDataGrid-columnHeaders"] {
+    background: var(--bg-secondary) !important;
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border) !important;
+  }
+}

@@ -1,0 +1,72 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.header {
+  @include flex-between;
+  height: $header-height;
+  padding: 0 2rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  position: fixed;
+  top: 0;
+  left: $sidebar-width;
+  right: 0;
+  z-index: 99;
+  transition: $transition;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &__menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-primary);
+    padding: 4px;
+    border-radius: $radius-sm;
+
+    &:hover { background: var(--bg-primary); }
+
+    @include responsive(mobile) {
+      display: flex;
+    }
+  }
+
+  &__title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  &__theme-btn {
+    @include flex-center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: $radius-sm;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: $transition;
+
+    span {
+      @include responsive(mobile) { display: none; }
+    }
+
+    &:hover {
+      background: rgba(79, 70, 229, 0.08);
+      border-color: $accent;
+      color: $accent;
+    }
+  }
+
+  @include responsive(mobile) {
+    left: 0;
+    padding: 0 1rem;
+  }
+}
