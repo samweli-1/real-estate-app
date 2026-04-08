@@ -1,0 +1,161 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.login {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  @include flex-center;
+  position: relative;
+  transition: $transition;
+
+  &__theme-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: $radius-sm;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 0.5rem;
+    @include flex-center;
+    transition: $transition;
+
+    &:hover {
+      border-color: $accent;
+      color: $accent;
+    }
+  }
+
+  &__card {
+    @include card;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 2.5rem 2rem;
+
+    @include responsive(mobile) {
+      margin: 1rem;
+    }
+  }
+
+  &__logo {
+    @include flex-center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(79, 70, 229, 0.12);
+    color: $accent;
+    margin-bottom: 0.5rem;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  &__subtitle {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  &__error {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: $radius-sm;
+    color: $danger;
+    font-size: 0.875rem;
+    text-align: center;
+  }
+
+  &__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    margin-top: 0.5rem;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    input {
+      padding: 0.65rem 0.9rem;
+      border-radius: $radius-sm;
+      border: 1px solid var(--border);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      transition: $transition;
+      outline: none;
+      width: 100%;
+
+      &::placeholder { color: var(--text-secondary); }
+
+      &:focus {
+        border-color: $accent;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+      }
+
+      &.input--error {
+        border-color: $danger;
+        &:focus { box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1); }
+      }
+    }
+  }
+
+  &__field-error {
+    font-size: 0.78rem;
+    color: $danger;
+  }
+
+  &__submit {
+    width: 100%;
+    padding: 0.75rem;
+    background: $accent;
+    color: white;
+    border: none;
+    border-radius: $radius-sm;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: $transition;
+    margin-top: 0.25rem;
+
+    &:hover:not(:disabled) { background: $accent-hover; }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+
+  &__hint {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(79, 70, 229, 0.06);
+    border: 1px dashed rgba(79, 70, 229, 0.3);
+    border-radius: $radius-sm;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+
+    strong { color: $accent; }
+  }
+}
