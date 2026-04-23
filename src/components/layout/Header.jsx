@@ -1,3 +1,4 @@
+﻿import { AppBar, Button, Chip, IconButton, Toolbar, Typography } from '@mui/material'
 import { useTheme } from '../../context/ThemeContext'
 import { useAuth } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
@@ -19,33 +20,48 @@ export default function Header({ onMenuClick }) {
   }
 
   return (
-    <header className="header">
-      <div className="header__left">
-        <button className="header__menu-btn" onClick={onMenuClick}>
-          <MenuIcon />
-        </button>
-        <h2 className="header__title">Real Estate Management</h2>
-      </div>
+    <AppBar position="fixed" color="transparent" elevation={0} className="header">
+      <Toolbar className="header__toolbar">
+        <div className="header__left">
+          <IconButton className="header__menu-btn" onClick={onMenuClick}>
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className="header__title">
+            Real Estate Management
+          </Typography>
+        </div>
 
-      <div className="header__right">
-        {user && (
-          <div className="header__user">
-            <PersonIcon fontSize="small" />
-            <span>{user.name}</span>
-            <span className="header__role">{user.role}</span>
-          </div>
-        )}
+        <div className="header__right">
+          {user && (
+            <Chip
+              icon={<PersonIcon fontSize="small" />}
+              label={`${user.name} (${user.role})`}
+              variant="outlined"
+              className="header__user"
+            />
+          )}
 
-        <button className="header__theme-btn" onClick={toggleTheme}>
-          {isDark ? <LightModeIcon /> : <DarkModeIcon />}
-          <span>{isDark ? 'Light' : 'Dark'}</span>
-        </button>
+          <Button
+            variant="outlined"
+            color="inherit"
+            startIcon={isDark ? <LightModeIcon /> : <DarkModeIcon />}
+            onClick={toggleTheme}
+            className="header__theme-btn"
+          >
+            {isDark ? 'Light' : 'Dark'}
+          </Button>
 
-        <button className="header__logout-btn" onClick={handleLogout}>
-          <LogoutIcon fontSize="small" />
-          <span>Logout</span>
-        </button>
-      </div>
-    </header>
+          <Button
+            variant="outlined"
+            color="error"
+            startIcon={<LogoutIcon />}
+            onClick={handleLogout}
+            className="header__logout-btn"
+          >
+            <span className="header__logout-label">Logout</span>
+          </Button>
+        </div>
+      </Toolbar>
+    </AppBar>
   )
 }

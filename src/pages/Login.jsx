@@ -1,11 +1,26 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import {
+  Alert,
+  Button,
+  Card,
+  CardContent,
+  IconButton,
+  InputAdornment,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material'
 import { useAuth } from '../context/AuthContext'
 import { useTheme } from '../context/ThemeContext'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import HomeIcon from '@mui/icons-material/Home'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
+import ApartmentIcon from '@mui/icons-material/Apartment'
+import TrendingUpIcon from '@mui/icons-material/TrendingUp'
+import SupportAgentIcon from '@mui/icons-material/SupportAgent'
 import './Login.scss'
 
 export default function Login() {
@@ -19,8 +34,8 @@ export default function Login() {
   const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
-    setErrors(prev => ({ ...prev, [e.target.name]: '' }))
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    setErrors((prev) => ({ ...prev, [e.target.name]: '' }))
     setAuthError('')
   }
 
@@ -60,71 +75,111 @@ export default function Login() {
   }
 
   return (
-    <div className="login">
-      {/* Theme toggle top right */}
-      <button className="login__theme-btn" onClick={toggleTheme}>
-        {isDark ? <LightModeIcon fontSize="small" /> : <DarkModeIcon fontSize="small" />}
-      </button>
+    <div className="login-page">
+      <IconButton onClick={toggleTheme} className="login-page__theme-btn">
+        {isDark ? <LightModeIcon /> : <DarkModeIcon />}
+      </IconButton>
 
-      <div className="login__card">
-        {/* Logo */}
-        <div className="login__logo">
-          <HomeIcon sx={{ fontSize: 36 }} />
+      <Card className="login-page__shell">
+        <div className="login-page__brand">
+          <div className="login-page__brand-logo">
+            <HomeIcon />
+          </div>
+          <Typography variant="h3" className="login-page__brand-name">
+            RwEstate
+          </Typography>
+          <Typography variant="h6" className="login-page__brand-tagline">
+            Smarter real estate operations for modern teams
+          </Typography>
+          <Typography variant="body1" className="login-page__brand-copy">
+            Manage listings, monitor inquiries, and coordinate agents from one clear workspace designed
+            for fast daily execution.
+          </Typography>
+
+          <div className="login-page__points">
+            <div className="login-page__point">
+              <ApartmentIcon />
+              <span>Unified property management dashboard</span>
+            </div>
+            <div className="login-page__point">
+              <TrendingUpIcon />
+              <span>Data-driven insights for better decisions</span>
+            </div>
+            <div className="login-page__point">
+              <SupportAgentIcon />
+              <span>Simple collaboration between admins and agents</span>
+            </div>
+          </div>
         </div>
 
-        <h1 className="login__title">Welcome back</h1>
-        <p className="login__subtitle">Sign in to your RealEstate account</p>
+        <CardContent className="login-page__content">
+          <Stack spacing={2.5} component="form" onSubmit={handleSubmit}>
+            <div className="login-page__intro">
+              <Typography variant="h4">Welcome back</Typography>
+              <Typography variant="body1" color="text.secondary">
+                Sign in to continue to RwEstate
+              </Typography>
+            </div>
 
-        {/* Auth error */}
-        {authError && (
-          <div className="login__error">
-            {authError}
-          </div>
-        )}
+            {authError && <Alert severity="error">{authError}</Alert>}
 
-        <form className="login__form" onSubmit={handleSubmit}>
-          <div className="login__field">
-            <label>Email address</label>
-            <input
-              type="text"
+            <TextField
+              label="Email address"
+              type="email"
               name="email"
               value={form.email}
               onChange={handleChange}
+              error={!!errors.email}
+              helperText={errors.email}
               placeholder="admin@realty.rw"
-              className={errors.email ? 'input--error' : ''}
+              fullWidth
+              size="medium"
             />
-            {errors.email && <span className="login__field-error">{errors.email}</span>}
-          </div>
 
-          <div className="login__field">
-            <label>Password</label>
-            <input
+            <TextField
+              label="Password"
               type="password"
               name="password"
               value={form.password}
               onChange={handleChange}
+              error={!!errors.password}
+              helperText={errors.password}
               placeholder="••••••••"
-              className={errors.password ? 'input--error' : ''}
+              fullWidth
+              size="medium"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <LockOutlinedIcon color="action" fontSize="small" />
+                  </InputAdornment>
+                ),
+              }}
             />
-            {errors.password && <span className="login__field-error">{errors.password}</span>}
-          </div>
 
-          <button
-            type="submit"
-            className="login__submit"
-            disabled={loading}
-          >
-            {loading ? 'Signing in...' : 'Sign In'}
-          </button>
-        </form>
+            <Button type="submit" variant="contained" size="large" disabled={loading}>
+              {loading ? 'Signing in...' : 'Sign in'}
+            </Button>
 
-        {/* Hint credentials */}
-        <div className="login__hint">
-          <p><strong>Admin:</strong> admin@realty.rw</p>
-          <p><strong>Agent:</strong> alice@realty.rw</p>
-          <p><strong>Password:</strong> realty123</p>
-        </div>
-      </div>
+            <div className="login-page__hint">
+              <Typography variant="caption" className="login-page__hint-title" display="block">
+                Demo Accounts
+              </Typography>
+              <div className="login-page__hint-row">
+                <CheckCircleOutlineIcon fontSize="inherit" />
+                <span>Admin: admin@realty.rw</span>
+              </div>
+              <div className="login-page__hint-row">
+                <CheckCircleOutlineIcon fontSize="inherit" />
+                <span>Agent: alice@realty.rw</span>
+              </div>
+              <div className="login-page__hint-row">
+                <CheckCircleOutlineIcon fontSize="inherit" />
+                <span>Password: realty123</span>
+              </div>
+            </div>
+          </Stack>
+        </CardContent>
+      </Card>
     </div>
   )
 }

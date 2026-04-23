@@ -1,12 +1,8 @@
-@use '../../styles/variables' as *;
+﻿@use '../../styles/variables' as *;
 
 .footer {
-  text-align: center;
-  padding: 1.25rem 2rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   border-top: 1px solid var(--border);
-  background: var(--bg-secondary);
+  padding: 1rem 0.25rem 1.25rem;
   color: var(--text-secondary);
-  font-size: 0.82rem;
-  transition: $transition;
 }

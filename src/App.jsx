@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Sidebar from './components/layout/Sidebar'
 import Header from './components/layout/Header'
@@ -12,35 +12,38 @@ import Inquiries from './pages/Inquiries'
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const toggleSidebar = () => setSidebarOpen(prev => !prev)
+  const toggleSidebar = () => setSidebarOpen((prev) => !prev)
 
   return (
     <BrowserRouter>
       <Routes>
-        {/* Public route */}
         <Route path="/login" element={<Login />} />
 
-        {/* Protected routes */}
-        <Route path="/*" element={
-          <ProtectedRoute>
-            <div className="layout">
-              <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} />
-              <Header onMenuClick={toggleSidebar} />
-              <main className="main-content">
-                <div className="page-content">
-                  <Routes>
-                    <Route path="/" element={<Dashboard />} />
-                    <Route path="/properties" element={<Properties />} />
-                    <Route path="/agents" element={<Agents />} />
-                    <Route path="/inquiries" element={<Inquiries />} />
-                    <Route path="*" element={<Navigate to="/" replace />} />
-                  </Routes>
-                </div>
-                <Footer />
-              </main>
-            </div>
-          </ProtectedRoute>
-        } />
+        <Route
+          path="/*"
+          element={
+            <ProtectedRoute>
+              <div className="layout">
+                <Header onMenuClick={toggleSidebar} />
+                <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} />
+
+                <main className="main-content">
+                  <div className="main-content__spacer" />
+                  <div className="page-content">
+                    <Routes>
+                      <Route path="/" element={<Dashboard />} />
+                      <Route path="/properties" element={<Properties />} />
+                      <Route path="/agents" element={<Agents />} />
+                      <Route path="/inquiries" element={<Inquiries />} />
+                      <Route path="*" element={<Navigate to="/" replace />} />
+                    </Routes>
+                  </div>
+                  <Footer />
+                </main>
+              </div>
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   )

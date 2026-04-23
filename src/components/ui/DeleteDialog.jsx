@@ -1,10 +1,10 @@
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography } from '@mui/material'
+﻿import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography } from '@mui/material'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 
 export default function DeleteDialog({ open, onClose, onConfirm, propertyTitle }) {
   return (
     <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
-      <DialogTitle sx={{ display: 'flex', alignItems: 'center', gap: 1, color: '#ef4444' }}>
+      <DialogTitle className="delete-dialog__title">
         <WarningAmberIcon />
         Confirm Delete
       </DialogTitle>

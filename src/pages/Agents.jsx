@@ -1,50 +1,51 @@
-import { agents, properties } from '../data/mockData'
-import { Chip } from '@mui/material'
+﻿import { Avatar, Chip, Grid, Paper, Typography } from '@mui/material'
 import PersonIcon from '@mui/icons-material/Person'
+import { agents, properties } from '../data/mockData'
 import './Agents.scss'
 
 export default function Agents() {
   return (
     <div className="agents">
-      <h1 className="agents__title">Agents</h1>
+      <Typography variant="h5" className="agents__title">
+        Agents
+      </Typography>
 
-      <div className="agents__grid">
-        {agents.map(agent => {
-          const assignedProperties = properties.filter(p =>
-            agent.properties.includes(p.id)
-          )
+      <Grid container spacing={2}>
+        {agents.map((agent) => {
+          const assignedProperties = properties.filter((p) => agent.properties.includes(p.id))
+          const availableCount = assignedProperties.filter((p) => p.status === 'available').length
 
           return (
-            <div key={agent.id} className="agent-card">
-              <div className="agent-card__avatar">
-                <PersonIcon sx={{ fontSize: 48 }} />
-              </div>
-
-              <div className="agent-card__info">
-                <h2>{agent.name}</h2>
-                <p>{agent.email}</p>
-                <p>{agent.phone}</p>
-              </div>
-
-              <div className="agent-card__stats">
-                <div className="agent-card__stat">
-                  <span className="agent-card__stat-value">
-                    {assignedProperties.length}
-                  </span>
-                  <span className="agent-card__stat-label">Properties</span>
+            <Grid key={agent.id} size={{ xs: 12, md: 6, xl: 4 }}>
+              <Paper className="agent-card">
+                <div className="agent-card__top">
+                  <Avatar className="agent-card__avatar">
+                    <PersonIcon />
+                  </Avatar>
+                  <div className="agent-card__info">
+                    <Typography variant="subtitle1">{agent.name}</Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {agent.email}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {agent.phone}
+                    </Typography>
+                  </div>
                 </div>
-                <div className="agent-card__stat">
-                  <span className="agent-card__stat-value">
-                    {assignedProperties.filter(p => p.status === 'available').length}
-                  </span>
-                  <span className="agent-card__stat-label">Available</span>
-                </div>
-              </div>
 
-              <div className="agent-card__properties">
-                <span className="agent-card__section-label">Assigned Properties</span>
+                <div className="agent-card__stats">
+                  <div className="agent-card__stat">
+                    <span className="agent-card__stat-value">{assignedProperties.length}</span>
+                    <span className="agent-card__stat-label">Properties</span>
+                  </div>
+                  <div className="agent-card__stat">
+                    <span className="agent-card__stat-value">{availableCount}</span>
+                    <span className="agent-card__stat-label">Available</span>
+                  </div>
+                </div>
+
                 <div className="agent-card__chips">
-                  {assignedProperties.map(p => (
+                  {assignedProperties.map((p) => (
                     <Chip
                       key={p.id}
                       label={p.title}
@@ -54,11 +55,11 @@ export default function Agents() {
                     />
                   ))}
                 </div>
-              </div>
-            </div>
+              </Paper>
+            </Grid>
           )
         })}
-      </div>
+      </Grid>
     </div>
   )
 }

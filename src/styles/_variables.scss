@@ -1,34 +1,35 @@
-// Colors - light mode
-$bg-primary-light: #f8f9fa;
+﻿// Colors - light mode
+$bg-primary-light: #f6f7fb;
 $bg-secondary-light: #ffffff;
-$text-primary-light: #1a1a2e;
-$text-secondary-light: #555555;
+$text-primary-light: #161823;
+$text-secondary-light: #5a6072;
 $sidebar-bg-light: #ffffff;
-$border-light: #e0e0e0;
+$border-light: #e6e8ef;
 
 // Colors - dark mode
-$bg-primary-dark: #0f0f1a;
-$bg-secondary-dark: #1a1a2e;
-$text-primary-dark: #e0e0e0;
-$text-secondary-dark: #a0a0b0;
-$sidebar-bg-dark: #1a1a2e;
-$border-dark: #2a2a3e;
+$bg-primary-dark: #0f0f10;
+$bg-secondary-dark: #18181b;
+$text-primary-dark: #f4f4f5;
+$text-secondary-dark: #a1a1aa;
+$sidebar-bg-dark: #141418;
+$border-dark: #2a2b31;
 
-// Accent
-$accent: #4f46e5;
-$accent-hover: #4338ca;
+// Accent (TikTok-like)
+$accent: #fe2c55;
+$accent-hover: #e61e4a;
+$accent-alt: #25f4ee;
 $danger: #ef4444;
 $success: #22c55e;
 $warning: #f59e0b;
 
 // Spacing
-$sidebar-width: 240px;
+$sidebar-width: 260px;
 $header-height: 64px;
 
 // Radius
-$radius-sm: 6px;
-$radius-md: 10px;
-$radius-lg: 16px;
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 18px;
 
 // Transition
 $transition: all 0.25s ease;

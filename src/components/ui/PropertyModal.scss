@@ -1,22 +1,34 @@
-@use '../../styles/variables' as *;
+﻿@use '../../styles/variables' as *;
 
 .prop-modal {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 0.5rem 0;
+  gap: 0.8rem;
+  padding: 0.4rem 0;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
 
   &__section {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
+    gap: 0.9rem;
+    align-items: flex-start;
   }
 
   &__label {
-    font-weight: 600;
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    min-width: 120px;
+    min-width: 130px;
+    font-weight: 700;
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    justify-content: flex-end;
   }
 }

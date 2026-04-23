@@ -1,161 +1,156 @@
-@use '../styles/variables' as *;
+﻿@use '../styles/variables' as *;
 @use '../styles/mixins' as *;
 
-.login {
+.login-page {
   min-height: 100vh;
-  background: var(--bg-primary);
-  @include flex-center;
+  padding: 1.25rem;
+  display: grid;
+  place-items: center;
   position: relative;
-  transition: $transition;
 
   &__theme-btn {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
+    position: fixed !important;
+    top: 16px;
+    right: 16px;
+    border: 1px solid var(--border) !important;
+    color: var(--text-primary) !important;
+    background: var(--bg-secondary) !important;
+  }
+
+  &__shell {
+    width: 100%;
+    max-width: 1120px;
+    min-height: 640px;
+    border: 1px solid var(--border) !important;
+    border-radius: 22px !important;
     background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: $radius-sm;
-    color: var(--text-primary);
-    cursor: pointer;
-    padding: 0.5rem;
-    @include flex-center;
-    transition: $transition;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    overflow: hidden;
 
-    &:hover {
-      border-color: $accent;
-      color: $accent;
+    @media (max-width: 940px) {
+      grid-template-columns: 1fr;
+      max-width: 560px;
+      min-height: auto;
     }
   }
 
-  &__card {
-    @include card;
-    width: 100%;
-    max-width: 420px;
+  &__brand {
+    padding: 2.25rem 2.3rem;
+    background: rgba(254, 44, 85, 0.08);
+    border-right: 1px solid var(--border);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 2.5rem 2rem;
+    gap: 0.9rem;
 
-    @include responsive(mobile) {
-      margin: 1rem;
+    @media (max-width: 940px) {
+      border-right: 0;
+      border-bottom: 1px solid var(--border);
+      padding: 1.8rem 1.6rem;
     }
   }
 
-  &__logo {
-    @include flex-center;
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: rgba(79, 70, 229, 0.12);
-    color: $accent;
-    margin-bottom: 0.5rem;
-  }
-
-  &__title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-primary);
-  }
-
-  &__subtitle {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    margin-bottom: 0.5rem;
-  }
-
-  &__error {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background: rgba(239, 68, 68, 0.1);
-    border: 1px solid rgba(239, 68, 68, 0.3);
-    border-radius: $radius-sm;
-    color: $danger;
-    font-size: 0.875rem;
-    text-align: center;
-  }
-
-  &__form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
-    margin-top: 0.5rem;
-  }
-
-  &__field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-
-    label {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-
-    input {
-      padding: 0.65rem 0.9rem;
-      border-radius: $radius-sm;
-      border: 1px solid var(--border);
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      font-size: 0.95rem;
-      transition: $transition;
-      outline: none;
-      width: 100%;
-
-      &::placeholder { color: var(--text-secondary); }
-
-      &:focus {
-        border-color: $accent;
-        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-      }
-
-      &.input--error {
-        border-color: $danger;
-        &:focus { box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1); }
-      }
-    }
-  }
-
-  &__field-error {
-    font-size: 0.78rem;
-    color: $danger;
-  }
-
-  &__submit {
-    width: 100%;
-    padding: 0.75rem;
+  &__brand-logo {
+    width: 62px;
+    height: 62px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    color: #fff;
     background: $accent;
-    color: white;
-    border: none;
-    border-radius: $radius-sm;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: $transition;
-    margin-top: 0.25rem;
 
-    &:hover:not(:disabled) { background: $accent-hover; }
+    .MuiSvgIcon-root {
+      font-size: 1.65rem;
+    }
+  }
 
-    &:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
+  &__brand-name {
+    font-size: clamp(2rem, 2.8vw, 2.7rem) !important;
+    font-weight: 800 !important;
+    line-height: 1.05 !important;
+  }
+
+  &__brand-tagline {
+    font-weight: 700 !important;
+    max-width: 26ch;
+  }
+
+  &__brand-copy {
+    max-width: 50ch;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  &__points {
+    margin-top: 0.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  &__point {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-primary);
+
+    .MuiSvgIcon-root {
+      color: $accent;
+      font-size: 1.1rem;
+    }
+
+    span {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+  }
+
+  &__content {
+    padding: 2.4rem 2.2rem !important;
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 940px) {
+      padding: 1.65rem !important;
+    }
+  }
+
+  &__intro {
+    margin-bottom: 0.25rem;
+
+    h4 {
+      font-weight: 800;
+      margin-bottom: 0.4rem;
     }
   }
 
   &__hint {
-    width: 100%;
-    margin-top: 1rem;
-    padding: 0.75rem 1rem;
-    background: rgba(79, 70, 229, 0.06);
-    border: 1px dashed rgba(79, 70, 229, 0.3);
+    padding: 0.85rem 1rem;
+    background: rgba(254, 44, 85, 0.06);
+    border: 1px solid rgba(254, 44, 85, 0.32);
     border-radius: $radius-sm;
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    line-height: 1.8;
+  }
 
-    strong { color: $accent; }
+  &__hint-title {
+    font-weight: 700 !important;
+    color: var(--text-primary);
+    margin-bottom: 0.45rem !important;
+  }
+
+  &__hint-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    margin-top: 0.2rem;
+
+    .MuiSvgIcon-root {
+      font-size: 0.86rem;
+      color: $accent;
+    }
   }
 }
+
+
+
